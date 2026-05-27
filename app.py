@@ -4,10 +4,8 @@ import os
 app = Flask(__name__)
 app.jinja_env.globals['enumerate'] = enumerate
 
-# Serve static files from root directory as well
 @app.route('/static/<path:filename>')
 def static_files(filename):
-    # Try static folder first, then root
     static_path = os.path.join(app.root_path, 'static', filename)
     if os.path.exists(static_path):
         return send_from_directory(os.path.join(app.root_path, 'static'), filename)
@@ -39,10 +37,10 @@ news_articles = [
     {
         "id": 3,
         "tag": "Events",
-        "title": "Big Maskandi Festival Returns to Durban This August",
-        "summary": "Thousands of fans are expected at the annual Maskandi Music Festival, returning bigger than ever with a two-day programme and over 20 artists on the lineup.",
-        "author": "Nomsa Zulu",
-        "date": "17 May 2026",
+        "title": "Newcastle Maskandi Festival Returns for Second Year",
+        "summary": "The 2nd Annual Newcastle Maskandi Festival takes place at Majuba College Stadium, Madadeni on 2-3 May 2026. Two days of top Maskandi artists, food stalls, and a powerful community vibe.",
+        "author": "Maskandi Online Magazine",
+        "date": "01 May 2026",
         "read_time": "2 min read",
         "featured": False,
         "image": "",
@@ -81,10 +79,34 @@ artists = [
 ]
 
 events = [
-    {"date": "07 Jun 2026", "title": "Khuzani Live at Moses Mabhida Stadium", "location": "Durban, KwaZulu-Natal"},
-    {"date": "14 Jun 2026", "title": "Maskandi Nite Jozi Edition", "location": "Johannesburg, Gauteng"},
-    {"date": "28 Jun 2026", "title": "Ntencane and Friends Annual Bash", "location": "Nkandla, KwaZulu-Natal"},
-    {"date": "02 Aug 2026", "title": "Maskandi Music Festival 2026", "location": "Durban ICC, KwaZulu-Natal"},
+    {
+        "date": "2–3 May 2026",
+        "title": "Newcastle Maskandi Festival (2nd Annual)",
+        "location": "Majuba College Stadium, Madadeni",
+        "description": "Two-day festival featuring top Maskandi artists, food stalls, cultural experience and community vibe.",
+        "icon": "🎶"
+    },
+    {
+        "date": "2 May 2026",
+        "title": "Blue Nation Festival — Maskandi Feature",
+        "location": "Carnival City, Sandton",
+        "description": "Major music festival with Maskandi headliners, high-energy production and big-stage performances.",
+        "icon": "🎤"
+    },
+    {
+        "date": "16 June 2026",
+        "title": "Umzumbe Maskandi Festival",
+        "location": "Esibanini Sports Ground, Umzumbe",
+        "description": "Focus on uplifting local artists and cultural tourism. Includes food village, workshops and community activities.",
+        "icon": "🪘"
+    },
+    {
+        "date": "26 September 2026",
+        "title": "Ugu Maskandi Festival (6th Annual)",
+        "location": "Ugu Sports & Leisure Centre, Port Shepstone",
+        "description": "One of the biggest Maskandi celebrations in KZN. VIP and general tickets available.",
+        "icon": "🪕"
+    },
 ]
 
 @app.route("/")
