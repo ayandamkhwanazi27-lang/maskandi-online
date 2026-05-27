@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+{% block title %}Contact — Maskandi Online Magazine{% endblock %}
+{% block extra_styles %}
+<style>
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+  .contact-card {
+    background: white;
+    border: 1px solid #E0E0E0;
+    border-top: 4px solid var(--red);
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+
+  .contact-card h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--red);
+    letter-spacing: 0.08em;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #F0F0F0;
+  }
+  .contact-item:last-child { border-bottom: none; }
+
+  .contact-icon {
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: var(--red);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .contact-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 0.2rem; }
+  .contact-value { font-size: 0.95rem; font-weight: 600; color: #1A1A1A; }
+  .contact-value a { color: var(--red); text-decoration: none; }
+  .contact-value a:hover { color: var(--green); }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+  .form-group label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #666; }
+  .form-group input,
+  .form-group textarea {
+    border: 1px solid #E0E0E0;
+    border-radius: 2px;
+    padding: 0.65rem 0.85rem;
+    font-size: 0.88rem;
+    font-family: 'Inter', sans-serif;
+    color: #1A1A1A;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus { border-color: var(--red); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+
+  .submit-btn {
+    background: var(--red);
+    color: white;
+    border: none;
+    padding: 0.85rem 2rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+  .submit-btn:hover { background: var(--red-dark); }
+
+  .whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #25D366;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: opacity 0.2s;
+  }
+  .whatsapp-btn:hover { opacity: 0.85; }
+
+  @media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr; } }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-wrap">
+  <div class="section-label">Contact Us</div>
+
+  <div class="contact-grid">
+
+    <div class="contact-card">
+      <h2>Get In Touch</h2>
+
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-value"><a href="tel:0810862486">081 086 2486</a></div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value"><a href="mailto:maskandimagazine@gmail.com">maskandimagazine@gmail.com</a></div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Location</div>
+          <div class="contact-value">South Africa</div>
+        </div>
+      </div>
+
+      <a href="https://wa.me/27810862486" target="_blank" class="whatsapp-btn">
+        💬 Chat on WhatsApp
+      </a>
+    </div>
+
+    <div class="contact-card">
+      <h2>Send Us a Message</h2>
+      <form class="contact-form" action="mailto:maskandimagazine@gmail.com" method="get" enctype="text/plain">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" name="name" placeholder="e.g. Sipho Dlamini">
+        </div>
+        <div class="form-group">
+          <label>Your Email</label>
+          <input type="email" name="email" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <input type="text" name="subject" placeholder="e.g. Interview request, Event listing...">
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea name="body" placeholder="Write your message here..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
