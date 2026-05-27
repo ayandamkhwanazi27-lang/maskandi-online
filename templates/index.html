@@ -1,0 +1,240 @@
+{% extends "base.html" %}
+
+{% block extra_styles %}
+<style>
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+  }
+
+  /* Hero */
+  .hero-card { margin-bottom: 2rem; }
+
+  .hero-img {
+    width: 100%;
+    height: 320px;
+    background: linear-gradient(135deg, #B0001A 0%, #E8001C 50%, #B0001A 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+
+  .hero-body { padding: 1.5rem; }
+
+  .hero-body h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.03em;
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+    color: #1A1A1A;
+  }
+
+  .hero-body p {
+    font-size: 0.92rem;
+    color: #555;
+    line-height: 1.75;
+    font-weight: 400;
+  }
+
+  .byline {
+    font-size: 0.7rem;
+    color: #999;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #E0E0E0;
+    font-weight: 500;
+  }
+
+  /* News stack */
+  .news-stack { display: flex; flex-direction: column; gap: 1rem; }
+
+  .news-item {
+    background: white;
+    border: 1px solid #E0E0E0;
+    border-left: 4px solid var(--red);
+    padding: 1rem 1.25rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+
+  .news-item:hover { border-left-color: var(--yellow); box-shadow: 0 3px 12px rgba(0,0,0,0.1); }
+
+  .news-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: #E0E0E0;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 2.5rem;
+    text-align: center;
+  }
+
+  .news-item h3 { font-size: 0.95rem; font-weight: 600; line-height: 1.3; margin-bottom: 0.3rem; color: #1A1A1A; }
+  .news-item p { font-size: 0.8rem; color: #777; line-height: 1.5; }
+
+  /* Sidebar */
+  .sidebar-widget {
+    background: white;
+    border: 1px solid #E0E0E0;
+    border-top: 4px solid var(--red);
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+
+  .artist-card {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid #F0F0F0;
+    text-decoration: none;
+    color: inherit;
+  }
+  .artist-card:last-child { border-bottom: none; }
+  .artist-card:hover .artist-name { color: var(--red); }
+
+  .artist-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--red);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem; color: white;
+    flex-shrink: 0;
+    border: 2px solid var(--yellow);
+  }
+
+  .artist-name { font-size: 0.88rem; font-weight: 600; color: #1A1A1A; }
+  .artist-meta { font-size: 0.72rem; color: #888; }
+
+  .event-item { padding: 0.75rem 0; border-bottom: 1px solid #F0F0F0; }
+  .event-item:last-child { border-bottom: none; }
+
+  .event-date {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 2px 8px;
+    margin-bottom: 0.3rem;
+    text-transform: uppercase;
+  }
+
+  .event-title { font-size: 0.85rem; font-weight: 500; line-height: 1.3; }
+  .event-loc { font-size: 0.72rem; color: #888; margin-top: 0.15rem; }
+
+  .pull-quote {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+    color: #333;
+    border-left: 3px solid var(--yellow);
+    padding-left: 0.75rem;
+  }
+
+  .pull-attr { font-size: 0.72rem; color: #888; font-weight: 500; }
+
+  @media (max-width: 700px) {
+    .main-grid { grid-template-columns: 1fr; }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-wrap">
+  <div class="main-grid">
+
+    <main>
+      <div class="section-label">Featured Story</div>
+
+      {% if featured %}
+      <div class="card hero-card">
+        <div class="hero-img">
+          {% if featured.image %}
+            <img src="/static/{{ featured.image }}" alt="{{ featured.title }}">
+          {% else %}
+            🎵
+          {% endif %}
+        </div>
+        <div class="hero-body">
+          <span class="tag">{{ featured.tag }}</span>
+          <h2>{{ featured.title }}</h2>
+          <p>{{ featured.summary }}</p>
+          <div class="byline">By {{ featured.author }} &nbsp;·&nbsp; {{ featured.date }} &nbsp;·&nbsp; {{ featured.read_time }}</div>
+          <a href="/news" class="btn-read">Continue reading →</a>
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="section-label" style="margin-top:2rem">Latest News</div>
+      <div class="news-stack">
+        {% for i, article in enumerate(latest) %}
+        <div class="news-item">
+          <div class="news-num">0{{ i + 1 }}</div>
+          <div>
+            <h3>{{ article.title }}</h3>
+            <p>{{ article.summary }}</p>
+            <a href="/news" class="btn-read">Read more →</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </main>
+
+    <aside>
+      <div class="sidebar-widget">
+        <div class="section-label">Featured Artists</div>
+        {% for artist in artists %}
+        <a href="/artists" class="artist-card">
+          <div class="artist-avatar">{{ artist.initials }}</div>
+          <div>
+            <div class="artist-name">{{ artist.name }}</div>
+            <div class="artist-meta">{{ artist.albums }} albums · {{ artist.region }}</div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+
+      <div class="sidebar-widget">
+        <div class="section-label">Upcoming Events</div>
+        {% for event in events %}
+        <div class="event-item">
+          <div class="event-date">{{ event.date }}</div>
+          <div class="event-title">{{ event.title }}</div>
+          <div class="event-loc">📍 {{ event.location }}</div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="sidebar-widget">
+        <div class="section-label">In Memoriam</div>
+        <div class="pull-quote">"Umculo wakho usaqhubeka ukuphila ezinhliziyweni zethu."</div>
+        <div class="pull-attr">— Lala ngoxolo, Mjik'jelwa 1983–2018</div>
+      </div>
+    </aside>
+
+  </div>
+</div>
+{% endblock %}
