@@ -1,119 +1,83 @@
-from flask import Flask, render_template, send_from_directory
-import os
+from flask import Flask, render_template
 
 app = Flask(__name__)
 app.jinja_env.globals['enumerate'] = enumerate
 
-@app.route('/static/<path:filename>')
-def static_files(filename):
-    static_path = os.path.join(app.root_path, 'static', filename)
-    if os.path.exists(static_path):
-        return send_from_directory(os.path.join(app.root_path, 'static'), filename)
-    return send_from_directory(app.root_path, filename)
-
 news_articles = [
     {
         "id": 1,
-        "tag": "Sikhumbula",
-        "title": "Sekuphele 8 Years Adlula Emhlabeni USbongiseni Ngubane — Mjik'jelwa",
-        "summary": "USbongiseni 'Mjik'jelwa' Ngubane wazalwa mhla zingama-17 kuSepthemba 1983 washona mhla zingama-25 kuNhlaba 2018 eneminyaka engu-35. Wayengagcini nje ngokuba umculi kuphela, kodwa wayeyingqalabutho yeMaskandi.",
+        "tag": "Exclusive",
+        "title": "Mfaz' Omnyama: 25 Years Since We Lost the African Jimi Hendrix of Maskandi",
+        "summary": "On 17 March 2001, South Africa lost one of its greatest Maskandi legends — Mpatheni Khumalo, known as Mfaz' Omnyama. Twenty-five years later, we remember his extraordinary life, his left-handed guitar mastery, and the timeless songs that continue to echo across KwaZulu-Natal and beyond.",
         "author": "Maskandi Online Magazine",
-        "date": "25 May 2026",
-        "read_time": "3 min read",
+        "date": "17 March 2026",
+        "read_time": "5 min read",
         "featured": True,
-        "image": "mjikjelwa.jpg",
+        "image": "mfaz_omnyama.jpg",
+        "facebook_embed": "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02x2ETQkdJH71RaU2zKrpowuNCN444PnZuYPtAopdzrQo66zGmznXMvdRZvtzTTCLjl%26id%3D61579378984039&show_text=true&width=500"
     },
     {
         "id": 2,
-        "tag": "New Album",
-        "title": "Menzi Ndimande Drops New 2026 Album — EZohlala Nawe",
-        "summary": "Maskandi artist Menzi Ndimande has just released his brand new 2026 album titled 'EZohlala Nawe', featuring 14 tracks. The album dropped 3 days ago and is already making waves across Maskandi music lovers in South Africa.",
+        "tag": "Tribute",
+        "title": "Remembering Busani 'Ntshebe' Khuzwayo — The Guitar Legend of Izingane Zoma",
+        "summary": "Maskandi Online pays tribute to Busani 'Ntshebe' Khuzwayo, the beloved guitarist of Izingane Zoma, whose extraordinary talent and love for the isiginci left a permanent mark on Maskandi music and its fans across South Africa.",
         "author": "Maskandi Online Magazine",
-        "date": "22 May 2026",
-        "read_time": "2 min read",
+        "date": "13 May 2026",
+        "read_time": "4 min read",
         "featured": False,
-        "image": "menzi_album.png",
+        "image": None,
+        "facebook_embed": "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0f4gouWk4yUVTv9B655gq7GqhLPMA2MuJVjwSDVTtNYnBhKiFoZYwgC31kqaVF5Rhl%26id%3D61579378984039&show_text=true&width=500"
     },
     {
         "id": 3,
-        "tag": "Events",
-        "title": "Newcastle Maskandi Festival Returns for Second Year",
-        "summary": "The 2nd Annual Newcastle Maskandi Festival takes place at Majuba College Stadium, Madadeni on 2-3 May 2026. Two days of top Maskandi artists, food stalls, and a powerful community vibe.",
+        "tag": "New Release",
+        "title": "Ojakalasi Drop New EP 'Move On' — Available Now on All Streaming Platforms",
+        "summary": "Rising Maskandi duo Ojakalasi have released their brand new EP titled 'Move On', now available on Spotify, Apple Music, and all major digital streaming platforms. The project showcases the duo's musical evolution and features a blend of traditional Maskandi sounds with fresh contemporary influences.",
         "author": "Maskandi Online Magazine",
-        "date": "01 May 2026",
+        "date": "18 May 2026",
         "read_time": "2 min read",
         "featured": False,
-        "image": "",
+        "image": "ojakalasi.jpg",
+        "facebook_embed": "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid04Kejn68RdHK1xdXR1zeSE7LSjSXJZa6dtzVn3hL5BhKoehDbdDMs4A6C7K32csd4l%26id%3D61579378984039&show_text=true&width=500"
     },
-    {
-        "id": 4,
-        "tag": "Interview",
-        "title": "Ntencane Speaks Out on Challenges Facing Young Maskandi Artists",
-        "summary": "In a candid exclusive interview, Ntencane opens up about his humble beginnings, industry obstacles, and his vision for the future of Maskandi music.",
-        "author": "Bongani Mthembu",
-        "date": "16 May 2026",
-        "read_time": "5 min read",
-        "featured": False,
-        "image": "",
-    },
-    {
-        "id": 5,
-        "tag": "Music",
-        "title": "Mthandeni SK New Single Breaks Streaming Records",
-        "summary": "The Maskandi sensation's latest release hit one million streams on local platforms within 48 hours, a first for the genre.",
-        "author": "Thandi Nkosi",
-        "date": "15 May 2026",
-        "read_time": "2 min read",
-        "featured": False,
-        "image": "",
-    },
+    {"id": 4, "tag": "Events", "title": "Big Maskandi Festival Returns to Durban This August", "summary": "Thousands of fans are expected at the annual Maskandi Music Festival, returning bigger than ever with a two-day programme and over 20 artists on the lineup.", "author": "Nomsa Zulu", "date": "17 May 2026", "read_time": "2 min read", "featured": False, "image": None, "facebook_embed": None},
+    {"id": 5, "tag": "Interview", "title": "Ntencane Speaks Out on Challenges Facing Young Maskandi Artists", "summary": "In a candid exclusive interview, Ntencane opens up about his humble beginnings, industry obstacles, and his vision for the future of Maskandi music.", "author": "Bongani Mthembu", "date": "16 May 2026", "read_time": "5 min read", "featured": False, "image": None, "facebook_embed": None},
+    {"id": 6, "tag": "Music", "title": "Mthandeni SK New Single Breaks Streaming Records", "summary": "The Maskandi sensation's latest release hit one million streams on local platforms within 48 hours, a first for the genre.", "author": "Thandi Nkosi", "date": "15 May 2026", "read_time": "2 min read", "featured": False, "image": None, "facebook_embed": None},
+    {"id": 7, "tag": "News", "title": "Government Pledges Support for Maskandi Cultural Heritage Programme", "summary": "The Department of Arts and Culture announced a new fund to support upcoming Maskandi artists and preserve the genre's traditions for future generations.", "author": "Lungelo Dube", "date": "14 May 2026", "read_time": "3 min read", "featured": False, "image": None, "facebook_embed": None},
 ]
 
 artists = [
-    {"initials": "KH", "name": "Khuzani Mpungose", "age": 36, "region": "Nkandla, KwaZulu-Natal", "albums": "Inja Nogodo, Umqhele Nethawula", "songs": "Isixaxa Samaxoki, Bengingazi, Ngeke Ngihleke", "bio": "Khuzani is one of the biggest Maskandi stars in South Africa and continues to dominate the genre.", "image": "khuzani.png"},
-    {"initials": "MZ", "name": "Mzukulu", "age": "30s", "region": "KwaZulu-Natal", "albums": "Ivolovolo, Yimi Unompempe", "songs": "Amagobongo, Ithuba, Yimi Unompempe", "bio": "Mzukulu is known for traditional Maskandi sounds and energetic live performances.", "image": "mzukulu.png"},
-    {"initials": "NT", "name": "Ntencane", "age": "Mid-20s", "region": "KwaZulu-Natal", "albums": "Uboya Enkomeni, Isigqila Sothando", "songs": "Wawuthembeni, Ngivunywe Usathane, Uboya Enkomeni", "bio": "Ntencane became famous for emotional love songs mixed with Maskandi style.", "image": "ntencane.png"},
-    {"initials": "TL", "name": "Thokozani Langa", "age": 54, "region": "Ulundi, KwaZulu-Natal", "albums": "I-Protection Order, Ipeni Nephepha", "songs": "Ngelinye Ilanga, I-Protection Order", "bio": "Respected for storytelling, humor, and strong Zulu cultural themes in his music.", "image": "thokozane_langa.png"},
-    {"initials": "SM", "name": "Sminofu", "age": "Young generation", "region": "KwaZulu-Natal", "albums": "Rush Hour, Gqiba I Bigger", "songs": "Ngiziphathele, Sehlukene, Sajola Kamnandi", "bio": "Sminofu mixes modern music styles with traditional Maskandi and is popular among youth.", "image": ""},
-    {"initials": "MT", "name": "Mthandeni SK", "age": "30s", "region": "KwaZulu-Natal", "albums": "Impisi Iyalaya, Amakhothangqoko", "songs": "Paris, Gucci, Imali Nemoto", "bio": "Known for modern Maskandi hits and a strong fan base across South Africa.", "image": "mthandeni.png"},
+    {"initials": "KH", "name": "Khuzani", "albums": 7, "region": "KZN"},
+    {"initials": "MT", "name": "Mthandeni SK", "albums": 5, "region": "Eshowe"},
+    {"initials": "NT", "name": "Ntencane", "albums": 4, "region": "Nkandla"},
+    {"initials": "MG", "name": "Mfana Kah Gogo", "albums": 2, "region": "Durban"},
 ]
 
 events = [
-    {
-        "date": "2–3 May 2026",
-        "title": "Newcastle Maskandi Festival (2nd Annual)",
-        "location": "Majuba College Stadium, Madadeni",
-        "description": "Two-day festival featuring top Maskandi artists, food stalls, cultural experience and community vibe.",
-        "icon": "🎶"
-    },
-    {
-        "date": "2 May 2026",
-        "title": "Blue Nation Festival — Maskandi Feature",
-        "location": "Carnival City, Sandton",
-        "description": "Major music festival with Maskandi headliners, high-energy production and big-stage performances.",
-        "icon": "🎤"
-    },
-    {
-        "date": "16 June 2026",
-        "title": "Umzumbe Maskandi Festival",
-        "location": "Esibanini Sports Ground, Umzumbe",
-        "description": "Focus on uplifting local artists and cultural tourism. Includes food village, workshops and community activities.",
-        "icon": "🪘"
-    },
-    {
-        "date": "26 September 2026",
-        "title": "Ugu Maskandi Festival (6th Annual)",
-        "location": "Ugu Sports & Leisure Centre, Port Shepstone",
-        "description": "One of the biggest Maskandi celebrations in KZN. VIP and general tickets available.",
-        "icon": "🪕"
-    },
+    {"date": "07 Jun 2026", "title": "Khuzani Live at Moses Mabhida Stadium", "location": "Durban, KwaZulu-Natal"},
+    {"date": "14 Jun 2026", "title": "Maskandi Nite Jozi Edition", "location": "Johannesburg, Gauteng"},
+    {"date": "28 Jun 2026", "title": "Ntencane and Friends Annual Bash", "location": "Nkandla, KwaZulu-Natal"},
+    {"date": "02 Aug 2026", "title": "Maskandi Music Festival 2026", "location": "Durban ICC, KwaZulu-Natal"},
+]
+
+top10_songs = [
+    {"rank": 1, "title": "Ngiyabonga Baba", "artist": "Khuzani", "trend": "up", "weeks": 3},
+    {"rank": 2, "title": "Iskhathi Sami", "artist": "Mthandeni SK", "trend": "up", "weeks": 1},
+    {"rank": 3, "title": "Impi Yami", "artist": "Ntencane", "trend": "same", "weeks": 5},
+    {"rank": 4, "title": "Move On", "artist": "Ojakalasi", "trend": "up", "weeks": 2},
+    {"rank": 5, "title": "Uyangidumaza", "artist": "Mfana Kah Gogo", "trend": "down", "weeks": 4},
+    {"rank": 6, "title": "Sengiyabona", "artist": "Khuzani", "trend": "up", "weeks": 1},
+    {"rank": 7, "title": "Angisekho", "artist": "Ntencane", "trend": "down", "weeks": 6},
+    {"rank": 8, "title": "Izinsuku Zami", "artist": "Mthandeni SK", "trend": "up", "weeks": 2},
+    {"rank": 9, "title": "Wena Wedwa", "artist": "Mfana Kah Gogo", "trend": "same", "weeks": 3},
+    {"rank": 10, "title": "Ubuhle Bakho", "artist": "Ojakalasi", "trend": "up", "weeks": 1},
 ]
 
 @app.route("/")
 def home():
     featured = next((a for a in news_articles if a["featured"]), None)
     latest = [a for a in news_articles if not a["featured"]]
-    return render_template("index.html", featured=featured, latest=latest, artists=artists, events=events)
+    return render_template("index.html", featured=featured, latest=latest, artists=artists, events=events, top10=top10_songs)
 
 @app.route("/news")
 def news():
@@ -130,10 +94,6 @@ def events_page():
 @app.route("/about")
 def about():
     return render_template("about.html")
-
-@app.route("/contact")
-def contact():
-    return render_template("contact.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
