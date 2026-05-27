@@ -2,7 +2,38 @@
 {% block title %}Events — Maskandi Online Magazine{% endblock %}
 {% block extra_styles %}
 <style>
-  .events-list { display: flex; flex-direction: column; gap: 1.5rem; max-width: 800px; }
+  .events-hero {
+    background: var(--red);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .events-hero h1 {
+    font-family: 'Russo One', sans-serif;
+    font-size: 2.2rem;
+    color: var(--yellow);
+    letter-spacing: 0.03em;
+    margin-bottom: 0.5rem;
+  }
+
+  .events-hero p {
+    color: rgba(255,255,255,0.85);
+    font-size: 0.92rem;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .events-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .events-list { display: flex; flex-direction: column; gap: 1.5rem; }
+
   .event-card {
     background: white;
     border: 1px solid #E0E0E0;
@@ -10,18 +41,27 @@
     padding: 1.5rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .event-card:hover { border-left-color: var(--yellow); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+
+  .event-top {
     display: flex;
     gap: 1.25rem;
     align-items: flex-start;
+    margin-bottom: 1rem;
   }
-  .event-card:hover { border-left-color: var(--yellow); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+
   .event-icon {
-    font-size: 2rem;
+    font-size: 2.2rem;
     flex-shrink: 0;
-    width: 50px;
+    width: 52px;
     text-align: center;
+    margin-top: 0.2rem;
   }
+
   .event-content { flex: 1; }
+
   .event-date {
     display: inline-block;
     background: var(--red);
@@ -33,41 +73,229 @@
     margin-bottom: 0.5rem;
     text-transform: uppercase;
   }
+
   .event-card h3 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.3rem;
+    font-size: 1.35rem;
     letter-spacing: 0.04em;
     color: #1A1A1A;
     margin-bottom: 0.25rem;
+    line-height: 1.2;
   }
+
   .event-loc {
     font-size: 0.8rem;
     color: var(--red);
     font-weight: 600;
     margin-bottom: 0.5rem;
   }
+
   .event-desc {
     font-size: 0.82rem;
     color: #666;
     line-height: 1.6;
   }
+
+  .event-actions {
+    display: flex;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid #F0F0F0;
+    flex-wrap: wrap;
+  }
+
+  .event-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 1.1rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .event-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  .event-btn.tickets { background: var(--red); color: white; }
+  .event-btn.whatsapp { background: #25D366; color: white; }
+  .event-btn.share { background: #F0F0F0; color: #333; }
+
+  /* Sidebar */
+  .events-sidebar {}
+
+  .sidebar-box {
+    background: white;
+    border: 1px solid #E0E0E0;
+    border-top: 4px solid var(--red);
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+
+  .sidebar-box h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    color: var(--red);
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #F0F0F0;
+  }
+
+  .mini-event {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #F5F5F5;
+  }
+
+  .mini-event:last-child { border-bottom: none; }
+
+  .mini-date {
+    background: var(--dark);
+    color: var(--yellow);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    padding: 4px 8px;
+    text-align: center;
+    flex-shrink: 0;
+    min-width: 70px;
+  }
+
+  .mini-title {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #1A1A1A;
+    line-height: 1.3;
+  }
+
+  .submit-event-box {
+    background: var(--dark);
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .submit-event-box h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    color: var(--yellow);
+    letter-spacing: 0.06em;
+    margin-bottom: 0.5rem;
+  }
+
+  .submit-event-box p {
+    font-size: 0.75rem;
+    color: #888;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  .submit-event-btn {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    padding: 0.65rem 1.5rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .submit-event-btn:hover { background: var(--red-dark); }
+
+  .count-badge {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--dark);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+
+  @media (max-width: 700px) {
+    .events-layout { grid-template-columns: 1fr; }
+    .events-hero h1 { font-size: 1.6rem; }
+    .event-actions { gap: 0.5rem; }
+  }
 </style>
 {% endblock %}
+
 {% block content %}
+
+<div class="events-hero">
+  <h1>🎪 Upcoming Events</h1>
+  <p>Stay up to date with the biggest Maskandi shows, festivals, and cultural events happening across South Africa.</p>
+</div>
+
 <div class="page-wrap">
-  <div class="section-label">Upcoming Events</div>
-  <div class="events-list">
-    {% for event in events %}
-    <div class="event-card">
-      <div class="event-icon">{{ event.icon }}</div>
-      <div class="event-content">
-        <div class="event-date">📅 {{ event.date }}</div>
-        <h3>{{ event.title }}</h3>
-        <div class="event-loc">📍 {{ event.location }}</div>
-        <div class="event-desc">{{ event.description }}</div>
+  <div class="events-layout">
+
+    <!-- Events list -->
+    <div>
+      <div class="section-label">
+        All Events <span class="count-badge">{{ events|length }}</span>
+      </div>
+
+      <div class="events-list">
+        {% for event in events %}
+        <div class="event-card">
+          <div class="event-top">
+            <div class="event-icon">{{ event.icon }}</div>
+            <div class="event-content">
+              <div class="event-date">📅 {{ event.date }}</div>
+              <h3>{{ event.title }}</h3>
+              <div class="event-loc">📍 {{ event.location }}</div>
+              <div class="event-desc">{{ event.description }}</div>
+            </div>
+          </div>
+          <div class="event-actions">
+            <a href="https://wa.me/27810862486?text=Hi, I want info about: {{ event.title }}" target="_blank" class="event-btn whatsapp">
+              💬 WhatsApp Us
+            </a>
+            <a href="mailto:maskandimagazine@gmail.com?subject=Tickets: {{ event.title }}" class="event-btn tickets">
+              🎟️ Get Tickets Info
+            </a>
+            <a href="https://wa.me/?text=Check out this event: {{ event.title }} on {{ event.date }} at {{ event.location }}" target="_blank" class="event-btn share">
+              🔗 Share
+            </a>
+          </div>
+        </div>
+        {% endfor %}
       </div>
     </div>
-    {% endfor %}
+
+    <!-- Sidebar -->
+    <div class="events-sidebar">
+
+      <div class="sidebar-box">
+        <h3>📆 Quick View</h3>
+        {% for event in events %}
+        <div class="mini-event">
+          <div class="mini-date">{{ event.date.split()[0] }} {{ event.date.split()[1] if event.date.split()|length > 1 else '' }}</div>
+          <div class="mini-title">{{ event.title }}</div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="submit-event-box">
+        <h3>🎤 Got an Event?</h3>
+        <p>Are you organising a Maskandi show or festival? Submit it and we'll list it here for free.</p>
+        <a href="/contact" class="submit-event-btn">Submit Your Event</a>
+      </div>
+
+    </div>
   </div>
 </div>
 {% endblock %}
