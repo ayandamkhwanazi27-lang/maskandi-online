@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+{% block title %}About — Maskandi Online Magazine{% endblock %}
+{% block extra_styles %}
+<style>
+  /* Stats */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .stat-box {
+    background: white;
+    border: 1px solid #E0E0E0;
+    border-top: 4px solid var(--red);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .stat-platform {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: white;
+    padding: 3px 10px;
+    margin-bottom: 1rem;
+    display: inline-block;
+  }
+  .stat-platform.facebook { background: #1877F2; }
+  .stat-platform.tiktok { background: #000; }
+  .stat-platform.youtube { background: #FF0000; }
+
+  .stat-numbers { display: flex; flex-direction: column; gap: 0.4rem; }
+  .stat-item { display: flex; justify-content: space-between; align-items: center; padding: 0.3rem 0; border-bottom: 1px solid #F5F5F5; }
+  .stat-item:last-child { border-bottom: none; }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--red); line-height: 1; }
+  .stat-label { font-size: 0.68rem; color: #888; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* About cards */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem; }
+  .about-card {
+    background: white;
+    border: 1px solid #E0E0E0;
+    border-top: 4px solid var(--red);
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .about-card h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--red); letter-spacing: 0.08em; margin-bottom: 1rem; }
+  .about-card p { font-size: 0.88rem; color: #555; line-height: 1.8; margin-bottom: 0.75rem; }
+  .hashtags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+  .hashtag { background: #F0F0F0; color: var(--red); font-size: 0.75rem; font-weight: 600; padding: 4px 12px; border-radius: 20px; }
+
+  /* Mission */
+  .mission-box {
+    background: var(--red);
+    color: white;
+    padding: 2.5rem 2rem;
+    margin-bottom: 3rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  .mission-icon { font-size: 3rem; line-height: 1; }
+  .mission-box h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--yellow); letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+  .mission-box p { font-size: 0.9rem; line-height: 1.8; color: rgba(255,255,255,0.9); }
+
+  /* Team */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+  }
+  .team-card {
+    background: white;
+    border: 1px solid #E0E0E0;
+    border-top: 4px solid var(--red);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .team-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.12); transform: translateY(-4px); }
+  .team-photo { width: 100%; height: 260px; object-fit: cover; object-position: top center; display: block; }
+  .team-body { padding: 1.35rem; }
+  .team-body h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.04em; color: #1A1A1A; margin-bottom: 0.2rem; }
+  .team-role { display: inline-block; background: var(--red); color: white; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; margin-bottom: 1rem; }
+  .team-bio { font-size: 0.8rem; color: #555; line-height: 1.7; }
+
+  @media (max-width: 700px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: 1fr; }
+    .mission-box { grid-template-columns: 1fr; text-align: center; }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-wrap">
+
+  <div class="section-label">About Us</div>
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-box">
+      <div><span class="stat-platform facebook">Facebook</span></div>
+      <div class="stat-numbers">
+        <div class="stat-item">
+          <span class="stat-label">Followers</span>
+          <span class="stat-num">28K</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Following</span>
+          <span class="stat-num">10</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-box">
+      <div><span class="stat-platform tiktok">TikTok</span></div>
+      <div class="stat-numbers">
+        <div class="stat-item">
+          <span class="stat-label">Followers</span>
+          <span class="stat-num">96.9K</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Likes</span>
+          <span class="stat-num">1.5M</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-box">
+      <div><span class="stat-platform youtube">YouTube</span></div>
+      <div class="stat-numbers">
+        <div class="stat-item">
+          <span class="stat-label">Subscribers</span>
+          <span class="stat-num">1.28K</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Total Views</span>
+          <span class="stat-num">159K</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Videos</span>
+          <span class="stat-num">101</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Who We Are -->
+  <div class="about-grid">
+    <div class="about-card">
+      <h2>Who We Are</h2>
+      <p>Welcome to Maskandi Online — your ultimate destination for authentic Maskandi music and the vibrant lifestyles of its greatest artists.</p>
+      <p>We bring you live performances, exclusive interviews, behind-the-scenes moments, and daily life experiences of your favourite Maskandi musicians.</p>
+      <p>Whether you are a die-hard fan or new to the genre, our platform celebrates the rich culture, deep storytelling, and powerful rhythms of Maskandi. Based in South Africa, active since April 2022.</p>
+      <div class="hashtags">
+        <span class="hashtag">#Maskandi</span>
+        <span class="hashtag">#ZuluMusic</span>
+        <span class="hashtag">#TraditionalSounds</span>
+        <span class="hashtag">#AfricanMusic</span>
+      </div>
+    </div>
+    <div class="about-card">
+      <h2>Find Us Online</h2>
+      <p>Follow us across all platforms and never miss a beat. New videos every week!</p>
+      <p><strong>YouTube:</strong> youtube.com/@maskandimagazine</p>
+      <p><strong>Facebook:</strong> Maskandi Online Magazine</p>
+      <p><strong>Instagram:</strong> @umaskandi_online</p>
+      <p><strong>TikTok:</strong> @maskandimagazine</p>
+      <br>
+      <p>Subscribe now and turn on notifications so you never miss a beat. Join the conversation and share the love for Maskandi!</p>
+    </div>
+  </div>
+
+  <!-- Mission -->
+  <div class="mission-box">
+    <div class="mission-icon">🎯</div>
+    <div>
+      <h2>Our Mission</h2>
+      <p>We are passionate about promoting and preserving Maskandi culture by delivering authentic news, interviews, live performances, and entertainment content to audiences across South Africa and beyond. Our goal is to give artists a stronger digital presence while keeping fans connected to the heart of Maskandi music and culture.</p>
+    </div>
+  </div>
+
+  <!-- Team -->
+  <div class="section-label">Meet The Team</div>
+  <div class="team-grid">
+
+    <div class="team-card">
+      <img class="team-photo" src="/static/njabulo.jpg" alt="Njabulo">
+      <div class="team-body">
+        <h3>Njabulo</h3>
+        <span class="team-role">Founder · Content Manager · Creative Editor</span>
+        <p class="team-bio">Leads the overall direction of the platform and oversees content production. Responsible for planning shoots, editing videos and articles, managing publishing schedules, and ensuring quality and consistency across all content. Handles creative decisions, brand growth, and digital strategy for the magazine.</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <img class="team-photo" src="/static/siya.jpg" alt="Siya">
+      <div class="team-body">
+        <h3>Siya</h3>
+        <span class="team-role">Interviews · Content Production</span>
+        <p class="team-bio">Specialises in artist interviews, event coverage, and behind-the-scenes content creation. Assists with planning interview sessions, capturing engaging moments during shoots, and helping produce content that connects audiences with Maskandi artists and culture.</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <img class="team-photo" src="/static/ntuthuko.png" alt="Ntuthuko">
+      <div class="team-body">
+        <h3>Ntuthuko</h3>
+        <span class="team-role">Interview Coordinator · Artist Relations</span>
+        <p class="team-bio">Focuses on conducting interviews with artists, event organisers, and industry personalities. Builds relationships within the Maskandi industry, coordinates interview arrangements, and contributes to storytelling and audience engagement through exclusive conversations.</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <img class="team-photo" src="/static/ayanda.jpg" alt="Ayanda">
+      <div class="team-body">
+        <h3>Ayanda</h3>
+        <span class="team-role">Shoots · Content Management · Editing</span>
+        <p class="team-bio">Responsible for capturing media content during events, managing content, and editing videos, images, and promotional material. Plays a key role in maintaining content quality and ensuring all published media is engaging, professional, and aligned with the brand's identity.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
