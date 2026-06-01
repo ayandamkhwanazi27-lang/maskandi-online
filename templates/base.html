@@ -57,22 +57,22 @@
       align-items: center;
       justify-content: center;
       gap: 1.25rem;
-      padding: 1rem 2rem;
+      padding: 0.75rem 2rem;
     }
-    .masthead img {
-      width: 75px; height: 75px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--yellow);
+    .masthead-logo {
+      height: 90px;
+      width: auto;
+      display: block;
     }
-    .masthead-text { text-align: left; }
-    .masthead h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.8rem;
-      color: white;
-      letter-spacing: 0.04em;
-      line-height: 1;
-      text-shadow: none;
+    .masthead-divider {
+      width: 2px;
+      height: 60px;
+      background: rgba(255,255,255,0.3);
+    }
+    .masthead-sub {
+      height: 55px;
+      width: auto;
+      display: block;
     }
     .masthead .tagline {
       color: rgba(255,255,255,0.85);
@@ -193,8 +193,8 @@
     .footer-bottom span { color: var(--yellow); }
 
     @media (max-width: 700px) {
-      .masthead h1 { font-size: 2rem; }
-      .masthead img { width: 55px; height: 55px; }
+      .masthead-logo { height: 60px; }
+      .masthead-sub { height: 40px; }
       nav.main-nav { flex-wrap: wrap; }
       nav.main-nav a { padding: 0.65rem 1rem; }
       .social-bar { flex-direction: column; gap: 0.4rem; text-align: center; }
@@ -230,11 +230,9 @@
 
 <header class="site-header">
   <div class="masthead">
-    <img src="/static/channels4_profile.jpg" alt="Maskandi Online Magazine Logo">
-    <div class="masthead-text">
-      <h1>Maskandi Online Magazine</h1>
-      <div class="tagline">News · Interviews · Artists · Events</div>
-    </div>
+    <img class="masthead-logo" src="/static/maskandi_network_logo.png" alt="Maskandi Online Magazine">
+    <div class="masthead-divider"></div>
+    <img class="masthead-sub" src="/static/non_logo.png" alt="NON Logo">
   </div>
   <nav class="main-nav">
     <a href="/" class="{{ 'active' if request.path == '/' }}">Home</a>
