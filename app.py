@@ -36,6 +36,50 @@ news_articles = [
     },
     {
         "id": 3,
+        "tag": "Izindaba",
+        "title": "'Ukugconana' kubakhele ugazi ezinkundleni zokuxhumana",
+        "summary": "Umculi kamaskandi uGqizile Khanyile nomngani wakhe uMlondi Msweli sebezakhele ugazi ezinkundleni zokuxhumana ngama-video abo begconana. UGqizile usenabalandeli abangaphezu kuka-378 000 kwiFacebook, abawu-190 000 nama-like awu-3 million kwiTikTok.",
+        "author": "Simangaliso Ntshangase",
+        "date": "1 week ago",
+        "read_time": "4 min read",
+        "featured": False,
+        "image": "",
+    },
+    {
+        "id": 4,
+        "tag": "Umculo",
+        "title": "Ucikoza ngokwenzeka empilweni yabantu — uMlabalaba ne-albhamu entsha ethi Izethembiso",
+        "summary": "Umculi kamaskandi uMlabalaba usedalule ukuthi ukuzinika isikhathi esanele sokupheka umculo wakhe omusha nokuqapha izinto ezenzeka empilweni yabantu kumsiza ukuthola izindikimba. I-albhamu yakhe yesikhombisa ethi Izethembiso inezingoma eziwu-17 futhi izingoma zayo sezidlalwe ngaphezu kuka-200 000.",
+        "author": "Simangaliso Ntshangase",
+        "date": "1 month ago",
+        "read_time": "5 min read",
+        "featured": False,
+        "image": "",
+    },
+    {
+        "id": 5,
+        "tag": "Izindaba",
+        "title": "Uhlela ukuyoyethula kwezinye izindawo i-albhamu uBahubhe oxoshwe eWorkshop",
+        "summary": "Umaskanda uBahubhe owenze indumezulu yomcimbi wokwethula i-albhamu yakhe ethi Ngiyobalanda usedalule ukuthi usexoshiwe eWorkshop eThekwini. Usehlela ukuyoyethula ngakubo, kanti uKhuzani wamthembisa ukeseka.",
+        "author": "Fanelesibonge Bengu",
+        "date": "2 months ago",
+        "read_time": "3 min read",
+        "featured": False,
+        "image": "",
+    },
+    {
+        "id": 6,
+        "tag": "Umculo",
+        "title": "Ukusabalala ngemiyalezo kuqhakazise icwecwe likaNtencane — Awuyiphumuze",
+        "summary": "Umculi kamaskandi uNtencane usedalule ukuthi ukugalela ngendlela ehlukile emculweni wakhe ngokudidiyela imiyalezo ehlukene kumsizile kakhulu. I-albhamu yakhe entsha ethi Awuyiphumuze enazo izingoma eziwu-16 sekukhona ezimbili ezidlalwe ngaphezu kuka-1 million.",
+        "author": "Simangaliso Ntshangase",
+        "date": "3 months ago",
+        "read_time": "5 min read",
+        "featured": False,
+        "image": "",
+    },
+    {
+        "id": 7,
         "tag": "Events",
         "title": "Newcastle Maskandi Festival Returns for Second Year",
         "summary": "The 2nd Annual Newcastle Maskandi Festival takes place at Majuba College Stadium, Madadeni on 2-3 May 2026. Two days of top Maskandi artists, food stalls, and a powerful community vibe.",
@@ -46,24 +90,13 @@ news_articles = [
         "image": "",
     },
     {
-        "id": 4,
+        "id": 8,
         "tag": "Interview",
         "title": "Ntencane Speaks Out on Challenges Facing Young Maskandi Artists",
         "summary": "In a candid exclusive interview, Ntencane opens up about his humble beginnings, industry obstacles, and his vision for the future of Maskandi music.",
         "author": "Bongani Mthembu",
         "date": "16 May 2026",
         "read_time": "5 min read",
-        "featured": False,
-        "image": "",
-    },
-    {
-        "id": 5,
-        "tag": "Music",
-        "title": "Mthandeni SK New Single Breaks Streaming Records",
-        "summary": "The Maskandi sensation's latest release hit one million streams on local platforms within 48 hours, a first for the genre.",
-        "author": "Thandi Nkosi",
-        "date": "15 May 2026",
-        "read_time": "2 min read",
         "featured": False,
         "image": "",
     },
@@ -79,34 +112,10 @@ artists = [
 ]
 
 events = [
-    {
-        "date": "2–3 May 2026",
-        "title": "Newcastle Maskandi Festival (2nd Annual)",
-        "location": "Majuba College Stadium, Madadeni",
-        "description": "Two-day festival featuring top Maskandi artists, food stalls, cultural experience and community vibe.",
-        "icon": "🎶"
-    },
-    {
-        "date": "2 May 2026",
-        "title": "Blue Nation Festival — Maskandi Feature",
-        "location": "Carnival City, Sandton",
-        "description": "Major music festival with Maskandi headliners, high-energy production and big-stage performances.",
-        "icon": "🎤"
-    },
-    {
-        "date": "16 June 2026",
-        "title": "Umzumbe Maskandi Festival",
-        "location": "Esibanini Sports Ground, Umzumbe",
-        "description": "Focus on uplifting local artists and cultural tourism. Includes food village, workshops and community activities.",
-        "icon": "🪘"
-    },
-    {
-        "date": "26 September 2026",
-        "title": "Ugu Maskandi Festival (6th Annual)",
-        "location": "Ugu Sports & Leisure Centre, Port Shepstone",
-        "description": "One of the biggest Maskandi celebrations in KZN. VIP and general tickets available.",
-        "icon": "🪕"
-    },
+    {"date": "2-3 May 2026", "title": "Newcastle Maskandi Festival (2nd Annual)", "location": "Majuba College Stadium, Madadeni", "description": "Two-day festival featuring top Maskandi artists, food stalls, cultural experience and community vibe.", "icon": "🎶"},
+    {"date": "2 May 2026", "title": "Blue Nation Festival — Maskandi Feature", "location": "Carnival City, Sandton", "description": "Major music festival with Maskandi headliners, high-energy production and big-stage performances.", "icon": "🎤"},
+    {"date": "16 June 2026", "title": "Umzumbe Maskandi Festival", "location": "Esibanini Sports Ground, Umzumbe", "description": "Focus on uplifting local artists and cultural tourism. Includes food village, workshops and community activities.", "icon": "🪘"},
+    {"date": "26 September 2026", "title": "Ugu Maskandi Festival (6th Annual)", "location": "Ugu Sports & Leisure Centre, Port Shepstone", "description": "One of the biggest Maskandi celebrations in KZN. VIP and general tickets available.", "icon": "🪕"},
 ]
 
 @app.route("/")
