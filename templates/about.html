@@ -28,8 +28,10 @@
     display: inline-block;
   }
   .stat-platform.facebook { background: #1877F2; }
+  .stat-platform.instagram { background: #E1306C; }
   .stat-platform.tiktok { background: #000; }
   .stat-platform.youtube { background: #FF0000; }
+  .stats-row { grid-template-columns: repeat(4, 1fr); }
 
   .stat-numbers { display: flex; flex-direction: column; gap: 0.4rem; }
   .stat-item { display: flex; justify-content: space-between; align-items: center; padding: 0.3rem 0; border-bottom: 1px solid #F5F5F5; }
@@ -109,11 +111,29 @@
       <div class="stat-numbers">
         <div class="stat-item">
           <span class="stat-label">Followers</span>
-          <span class="stat-num">28K</span>
+          <span class="stat-num">30K</span>
         </div>
         <div class="stat-item">
           <span class="stat-label">Following</span>
           <span class="stat-num">10</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-box">
+      <div><span class="stat-platform instagram">Instagram</span></div>
+      <div class="stat-numbers">
+        <div class="stat-item">
+          <span class="stat-label">Followers</span>
+          <span class="stat-num">28.9K</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Posts</span>
+          <span class="stat-num">1,209</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Following</span>
+          <span class="stat-num">165</span>
         </div>
       </div>
     </div>
