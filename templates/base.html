@@ -56,30 +56,38 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 1.25rem;
-      padding: 0.75rem 2rem;
+      gap: 1.5rem;
+      padding: 1rem 2rem;
     }
     .masthead-logo {
-      height: 90px;
-      width: auto;
-      display: block;
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid white;
+      flex-shrink: 0;
     }
-    .masthead-divider {
-      width: 2px;
-      height: 60px;
-      background: rgba(255,255,255,0.3);
+    .masthead-text { text-align: left; }
+    .masthead h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem;
+      letter-spacing: 0.06em;
+      line-height: 1;
     }
-    .masthead-sub {
-      height: 55px;
-      width: auto;
-      display: block;
-    }
+    .masthead h1 .m1 { color: #FF0000; }
+    .masthead h1 .m2 { color: #FFD700; }
+    .masthead h1 .m3 { color: #00A651; }
+    .masthead h1 .m4 { color: #0057A8; }
+    .masthead h1 .m5 { color: #FF6600; }
+    .masthead h1 .m6 { color: #FF0099; }
+    .masthead h1 .m7 { color: #00CFFF; }
+    .masthead h1 .m8 { color: #FFD700; }
+    .masthead h1 .net { color: white; display: block; font-size: 1.6rem; letter-spacing: 0.18em; margin-top: -0.2rem; }
     .masthead .tagline {
-      color: rgba(255,255,255,0.85);
-      font-size: 0.72rem;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.68rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      margin-top: 0.2rem;
+      margin-top: 0.25rem;
       font-weight: 500;
     }
 
@@ -193,8 +201,8 @@
     .footer-bottom span { color: var(--yellow); }
 
     @media (max-width: 700px) {
-      .masthead-logo { height: 60px; }
-      .masthead-sub { height: 40px; }
+      .masthead h1 { font-size: 2rem; }
+      .masthead-logo { width: 55px; height: 55px; }
       nav.main-nav { flex-wrap: wrap; }
       nav.main-nav a { padding: 0.65rem 1rem; }
       .social-bar { flex-direction: column; gap: 0.4rem; text-align: center; }
@@ -230,9 +238,14 @@
 
 <header class="site-header">
   <div class="masthead">
-    <img class="masthead-logo" src="/static/maskandi_network_logo.png" alt="Maskandi Online Magazine">
-    <div class="masthead-divider"></div>
-    <img class="masthead-sub" src="/static/non_logo.png" alt="NON Logo">
+    <img class="masthead-logo" src="/static/channels4_profile.jpg" alt="Maskandi Online Magazine Logo">
+    <div class="masthead-text">
+      <h1>
+        <span class="m1">M</span><span class="m2">A</span><span class="m3">S</span><span class="m4">K</span><span class="m5">A</span><span class="m6">N</span><span class="m7">D</span><span class="m8">I</span>
+        <span class="net">ONLINE MAGAZINE</span>
+      </h1>
+      <div class="tagline">News · Interviews · Artists · Events</div>
+    </div>
   </div>
   <nav class="main-nav">
     <a href="/" class="{{ 'active' if request.path == '/' }}">Home</a>
