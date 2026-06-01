@@ -43,7 +43,7 @@ news_articles = [
         "date": "1 week ago",
         "read_time": "4 min read",
         "featured": False,
-        "image": "",
+        "image": "gqizile.png",
     },
     {
         "id": 4,
@@ -54,7 +54,7 @@ news_articles = [
         "date": "1 month ago",
         "read_time": "5 min read",
         "featured": False,
-        "image": "",
+        "image": "mlablaba.png",
     },
     {
         "id": 5,
@@ -65,7 +65,7 @@ news_articles = [
         "date": "2 months ago",
         "read_time": "3 min read",
         "featured": False,
-        "image": "",
+        "image": "bahubhe.png",
     },
     {
         "id": 6,
