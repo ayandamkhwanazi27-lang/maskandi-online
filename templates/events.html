@@ -2,7 +2,6 @@
 {% block title %}Events — Maskandi Online Magazine{% endblock %}
 {% block extra_styles %}
 <style>
-  /* Calendar */
   .calendar-wrap { margin-bottom: 2rem; }
   .calendar-header {
     display: flex;
@@ -13,24 +12,16 @@
     padding: 1rem 1.5rem;
     border-radius: 4px 4px 0 0;
   }
-  .calendar-header h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem;
-    letter-spacing: 0.1em;
-  }
+  .calendar-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.1em; }
   .cal-nav {
     background: rgba(255,255,255,0.2);
-    border: none;
-    color: white;
-    font-size: 1.2rem;
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    cursor: pointer;
+    border: none; color: white;
+    font-size: 1.2rem; width: 32px; height: 32px;
+    border-radius: 50%; cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     transition: background 0.2s;
   }
   .cal-nav:hover { background: rgba(255,255,255,0.35); }
-
   .calendar-grid {
     background: white;
     border: 1px solid #E0E0E0;
@@ -38,133 +29,39 @@
     border-radius: 0 0 4px 4px;
     overflow: hidden;
   }
-  .cal-days-header {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    background: #1A1A1A;
-  }
-  .cal-day-name {
-    text-align: center;
-    padding: 0.6rem;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #aaa;
-  }
-  .cal-cells {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-  }
-  .cal-cell {
-    min-height: 70px;
-    border-right: 1px solid #F0F0F0;
-    border-bottom: 1px solid #F0F0F0;
-    padding: 0.4rem;
-    position: relative;
-  }
+  .cal-days-header { display: grid; grid-template-columns: repeat(7, 1fr); background: #1A1A1A; }
+  .cal-day-name { text-align: center; padding: 0.6rem; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #aaa; }
+  .cal-cells { display: grid; grid-template-columns: repeat(7, 1fr); }
+  .cal-cell { min-height: 70px; border-right: 1px solid #F0F0F0; border-bottom: 1px solid #F0F0F0; padding: 0.4rem; }
   .cal-cell:nth-child(7n) { border-right: none; }
   .cal-cell.empty { background: #FAFAFA; }
   .cal-cell.today { background: #FFF5F5; }
-  .cal-date {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 0.25rem;
-  }
-  .cal-cell.today .cal-date {
-    background: var(--red);
-    color: white;
-    width: 24px; height: 24px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.75rem;
-  }
-  .cal-event-dot {
-    background: var(--red);
-    color: white;
-    font-size: 0.55rem;
-    font-weight: 700;
-    padding: 2px 5px;
-    border-radius: 2px;
-    cursor: pointer;
-    margin-bottom: 2px;
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transition: background 0.2s;
-  }
+  .cal-date { font-size: 0.8rem; font-weight: 600; color: #333; margin-bottom: 0.25rem; }
+  .cal-cell.today .cal-date { background: var(--red); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; }
+  .cal-event-dot { background: var(--red); color: white; font-size: 0.55rem; font-weight: 700; padding: 2px 5px; border-radius: 2px; cursor: pointer; margin-bottom: 2px; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: background 0.2s; }
   .cal-event-dot:hover { background: #1A1A1A; }
 
-  /* Event list below calendar */
   .events-list { display: flex; flex-direction: column; gap: 1.25rem; }
   .event-card {
-    background: white;
-    border: 1px solid #E0E0E0;
-    border-left: 5px solid var(--red);
-    padding: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    cursor: pointer;
-    transition: box-shadow 0.2s, border-color 0.2s;
-    display: flex;
-    gap: 1.25rem;
-    align-items: flex-start;
+    background: white; border: 1px solid #E0E0E0; border-left: 5px solid var(--red);
+    padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    cursor: pointer; transition: box-shadow 0.2s, border-color 0.2s;
+    display: flex; gap: 1.25rem; align-items: flex-start;
   }
   .event-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); border-left-color: #1A1A1A; }
   .event-icon { font-size: 2rem; flex-shrink: 0; width: 50px; text-align: center; }
   .event-content { flex: 1; }
-  .event-date-badge {
-    display: inline-block;
-    background: var(--red);
-    color: white;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    padding: 3px 12px;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-  }
-  .event-card h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.3rem;
-    letter-spacing: 0.04em;
-    color: #1A1A1A;
-    margin-bottom: 0.25rem;
-  }
+  .event-date-badge { display: inline-block; background: var(--red); color: white; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; padding: 3px 12px; margin-bottom: 0.5rem; text-transform: uppercase; }
+  .event-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.04em; color: #1A1A1A; margin-bottom: 0.25rem; }
   .event-loc { font-size: 0.8rem; color: var(--red); font-weight: 600; margin-bottom: 0.5rem; }
   .event-desc { font-size: 0.82rem; color: #666; line-height: 1.6; }
   .event-expand { font-size: 0.7rem; color: #aaa; margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 0.08em; }
 
-  /* Modal */
-  .modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-  }
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; align-items: center; justify-content: center; padding: 1rem; }
   .modal-overlay.open { display: flex; }
-  .modal {
-    background: white;
-    max-width: 550px;
-    width: 100%;
-    border-top: 5px solid var(--red);
-    border-radius: 4px;
-    overflow: hidden;
-    animation: slideUp 0.25s ease;
-  }
+  .modal { background: white; max-width: 550px; width: 100%; border-top: 5px solid var(--red); border-radius: 4px; overflow: hidden; animation: slideUp 0.25s ease; }
   @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-  .modal-header {
-    background: var(--red);
-    padding: 1.25rem 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  .modal-header { background: var(--red); padding: 1.25rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
   .modal-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: white; letter-spacing: 0.05em; }
   .modal-close { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; line-height: 1; }
   .modal-body { padding: 1.5rem; }
@@ -173,6 +70,10 @@
   .modal-row-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #999; margin-bottom: 0.15rem; }
   .modal-row-value { font-size: 0.88rem; color: #333; font-weight: 500; }
   .modal-desc { font-size: 0.85rem; color: #555; line-height: 1.7; padding-top: 1rem; border-top: 1px solid #F0F0F0; }
+  .modal-performers { margin-top: 0.75rem; }
+  .modal-performers-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #999; margin-bottom: 0.5rem; }
+  .performer-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .performer-tag { background: #FFF0F0; color: var(--red); font-size: 0.72rem; font-weight: 600; padding: 3px 10px; border: 1px solid #FFD0D0; }
 </style>
 {% endblock %}
 
@@ -180,7 +81,6 @@
 <div class="page-wrap">
   <div class="section-label">Events Calendar</div>
 
-  <!-- CALENDAR -->
   <div class="calendar-wrap">
     <div class="calendar-header">
       <button class="cal-nav" onclick="changeMonth(-1)">‹</button>
@@ -201,11 +101,10 @@
     </div>
   </div>
 
-  <!-- EVENTS LIST -->
   <div class="section-label">All Upcoming Events</div>
   <div class="events-list">
     {% for event in events %}
-    <div class="event-card" onclick="openModal('{{ event.title }}', '{{ event.date }}', '{{ event.location }}', '{{ event.description }}', '{{ event.icon }}')">
+    <div class="event-card" onclick="openModal({{ loop.index0 }})">
       <div class="event-icon">{{ event.icon }}</div>
       <div class="event-content">
         <div class="event-date-badge">📅 {{ event.date }}</div>
@@ -219,7 +118,6 @@
   </div>
 </div>
 
-<!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
   <div class="modal">
     <div class="modal-header">
@@ -229,58 +127,103 @@
     <div class="modal-body">
       <div class="modal-row">
         <div class="modal-row-icon">📅</div>
-        <div>
-          <div class="modal-row-label">Date</div>
-          <div class="modal-row-value" id="modal-date"></div>
-        </div>
+        <div><div class="modal-row-label">Date</div><div class="modal-row-value" id="modal-date"></div></div>
       </div>
       <div class="modal-row">
         <div class="modal-row-icon">📍</div>
-        <div>
-          <div class="modal-row-label">Venue</div>
-          <div class="modal-row-value" id="modal-location"></div>
-        </div>
+        <div><div class="modal-row-label">Venue</div><div class="modal-row-value" id="modal-location"></div></div>
       </div>
       <div class="modal-desc" id="modal-desc"></div>
+      <div class="modal-performers" id="modal-performers-wrap" style="display:none">
+        <div class="modal-performers-label">🎤 Performing Artists</div>
+        <div class="performer-tags" id="modal-performers"></div>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
   const events = [
-    { title: "Newcastle Maskandi Festival (2nd Annual)", date: "2026-05-02", location: "Majuba College Stadium, Madadeni", description: "Two-day festival featuring top Maskandi artists, food stalls, cultural experience and community vibe.", icon: "🎶" },
-    { title: "Blue Nation Festival — Maskandi Feature", date: "2026-05-02", location: "Carnival City, Sandton", description: "Major music festival with Maskandi headliners, high-energy production and big-stage performances.", icon: "🎤" },
-    { title: "Umzumbe Maskandi Festival", date: "2026-06-16", location: "Esibanini Sports Ground, Umzumbe", description: "Focus on uplifting local artists and cultural tourism. Includes food village, workshops and community activities.", icon: "🪘" },
-    { title: "Ugu Maskandi Festival (6th Annual)", date: "2026-09-26", location: "Ugu Sports & Leisure Centre, Port Shepstone", description: "One of the biggest Maskandi celebrations in KZN. VIP and general tickets available.", icon: "🪕" },
+    {
+      title: "Newcastle Maskandi Festival (2nd Annual)",
+      date: "2-3 May 2026", calDate: "2026-05-02",
+      location: "Majuba College Stadium, Madadeni",
+      description: "Two-day festival featuring top Maskandi artists, food stalls, cultural experience and community vibe.",
+      icon: "🎶", performers: []
+    },
+    {
+      title: "Blue Nation Festival — Maskandi Feature",
+      date: "2 May 2026", calDate: "2026-05-02",
+      location: "Carnival City, Sandton",
+      description: "Major music festival with Maskandi headliners, high-energy production and big-stage performances.",
+      icon: "🎤", performers: []
+    },
+    {
+      title: "Ubende Album Launch",
+      date: "6 June 2026", calDate: "2026-06-06",
+      location: "Albert Park, Durban",
+      description: "Official album launch for Ubende featuring an incredible lineup of Maskandi and music stars for a night to remember.",
+      icon: "🎵", performers: ["Saliwa", "Gqizile", "Gandaganda", "Jumbo Mdumazi", "And Many More"]
+    },
+    {
+      title: "Umgubho KaShwi Mantombazane",
+      date: "20 June 2026", calDate: "2026-06-20",
+      location: "Soweto Equestrian Centre, Soweto",
+      description: "A special cultural celebration and music gathering honouring Maskandi culture and heritage.",
+      icon: "🪘", performers: []
+    },
+    {
+      title: "Youth Day Maskandi Fest — Indiya Album Launch",
+      date: "20 June 2026", calDate: "2026-06-20",
+      location: "Thokoza Park Hall",
+      description: "Youth Day celebration combined with the official Indiya album launch featuring a massive lineup of top Maskandi artists.",
+      icon: "🎶", performers: ["Imfezi Emnyama", "Jaiva Zimnike", "Mlabalaba", "Jikijiki", "Mnyovu", "Sminofu", "Feza", "Menzi", "Limit Nala", "And Many More"]
+    },
+    {
+      title: "Maskandi Fest East London",
+      date: "26 September 2026", calDate: "2026-09-26",
+      location: "Jan Smuts Stadium, East London",
+      description: "Heritage Month celebration at Jan Smuts Stadium. Tickets available at www.doekonfleek.africa. Opens 10:00 AM. All genders allowed.",
+      icon: "🏟️", performers: []
+    },
+    {
+      title: "Umzumbe Maskandi Festival",
+      date: "16 June 2026", calDate: "2026-06-16",
+      location: "Esibanini Sports Ground, Umzumbe",
+      description: "Focus on uplifting local artists and cultural tourism. Includes food village, workshops and community activities.",
+      icon: "🎸", performers: []
+    },
+    {
+      title: "Ugu Maskandi Festival (6th Annual)",
+      date: "26 September 2026", calDate: "2026-09-26",
+      location: "Ugu Sports & Leisure Centre, Port Shepstone",
+      description: "One of the biggest Maskandi celebrations in KZN. VIP and general tickets available.",
+      icon: "🪕", performers: []
+    },
   ];
 
   const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
   let currentYear = 2026;
-  let currentMonth = 5; // June = 5 (0-indexed)
+  let currentMonth = 5;
 
   function renderCalendar() {
-    const title = document.getElementById('cal-title');
+    document.getElementById('cal-title').textContent = months[currentMonth] + ' ' + currentYear;
     const cells = document.getElementById('cal-cells');
-    title.textContent = months[currentMonth] + ' ' + currentYear;
     cells.innerHTML = '';
-
     const firstDay = new Date(currentYear, currentMonth, 1).getDay();
     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
     const today = new Date();
 
-    for (let i = 0; i < firstDay; i++) {
-      cells.innerHTML += '<div class="cal-cell empty"></div>';
-    }
+    for (let i = 0; i < firstDay; i++) cells.innerHTML += '<div class="cal-cell empty"></div>';
 
     for (let d = 1; d <= daysInMonth; d++) {
       const isToday = today.getDate() === d && today.getMonth() === currentMonth && today.getFullYear() === currentYear;
       const dateStr = currentYear + '-' + String(currentMonth + 1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
-      const dayEvents = events.filter(e => e.date === dateStr);
-
+      const dayEvents = events.map((e, i) => ({...e, idx: i})).filter(e => e.calDate === dateStr);
       let html = '<div class="cal-cell' + (isToday ? ' today' : '') + '">';
       html += '<div class="cal-date">' + d + '</div>';
       dayEvents.forEach(e => {
-        html += '<span class="cal-event-dot" onclick="openModal(\'' + e.title.replace(/'/g, "\\'") + '\',\'' + e.date + '\',\'' + e.location.replace(/'/g, "\\'") + '\',\'' + e.description.replace(/'/g, "\\'") + '\',\'' + e.icon + '\')">' + e.icon + ' ' + e.title.split(' ').slice(0,2).join(' ') + '</span>';
+        html += '<span class="cal-event-dot" onclick="openModal(' + e.idx + ')">' + e.icon + ' ' + e.title.split(' ').slice(0,3).join(' ') + '</span>';
       });
       html += '</div>';
       cells.innerHTML += html;
@@ -294,21 +237,25 @@
     renderCalendar();
   }
 
-  function openModal(title, date, location, desc, icon) {
-    document.getElementById('modal-title').textContent = icon + ' ' + title;
-    document.getElementById('modal-date').textContent = date;
-    document.getElementById('modal-location').textContent = location;
-    document.getElementById('modal-desc').textContent = desc;
+  function openModal(idx) {
+    const e = events[idx];
+    document.getElementById('modal-title').textContent = e.icon + ' ' + e.title;
+    document.getElementById('modal-date').textContent = e.date;
+    document.getElementById('modal-location').textContent = e.location;
+    document.getElementById('modal-desc').textContent = e.description;
+    const perfWrap = document.getElementById('modal-performers-wrap');
+    const perfTags = document.getElementById('modal-performers');
+    if (e.performers && e.performers.length > 0) {
+      perfWrap.style.display = 'block';
+      perfTags.innerHTML = e.performers.map(p => '<span class="performer-tag">' + p + '</span>').join('');
+    } else {
+      perfWrap.style.display = 'none';
+    }
     document.getElementById('modal-overlay').classList.add('open');
   }
 
-  function closeModal() {
-    document.getElementById('modal-overlay').classList.remove('open');
-  }
-
-  function closeModalOutside(e) {
-    if (e.target === document.getElementById('modal-overlay')) closeModal();
-  }
+  function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); }
+  function closeModalOutside(e) { if (e.target === document.getElementById('modal-overlay')) closeModal(); }
 
   renderCalendar();
 </script>
