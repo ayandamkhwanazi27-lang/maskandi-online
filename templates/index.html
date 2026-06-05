@@ -1,72 +1,76 @@
 {% extends "base.html" %}
 
 {% block extra_styles %}
-<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  .hero-body h2, .news-item h3, .section-label {
-    font-family: 'Russo One', sans-serif !important;
-    letter-spacing: 0.02em;
-  }
-
   .main-grid {
     display: grid;
     grid-template-columns: 1fr 300px;
     gap: 2rem;
   }
 
+  /* Hero */
   .hero-card { margin-bottom: 2rem; }
 
   .hero-img {
-    width: 100%; height: 320px;
-    background: linear-gradient(135deg, #8B0010 0%, #B0001A 40%, #E8001C 100%);
-    display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden;
+    width: 100%;
+    height: 320px;
+    background: linear-gradient(135deg, #B0001A 0%, #E8001C 50%, #B0001A 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    overflow: hidden;
+    position: relative;
   }
 
-  .hero-img img.article-photo {
-    width: 100%; height: 100%;
-    object-fit: cover; object-position: center top; display: block;
-  }
-
-  .hero-img img.fallback-logo {
-    width: 260px; max-width: 70%;
-    object-fit: contain; mix-blend-mode: multiply;
-    filter: drop-shadow(0 4px 16px rgba(0,0,0,0.3));
-  }
-
-  .hero-img::after {
-    content: ''; position: absolute;
-    bottom: 0; left: 0; right: 0; height: 60%;
-    background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
-    pointer-events: none;
+  .hero-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
   }
 
   .hero-body { padding: 1.5rem; }
 
   .hero-body h2 {
-    font-size: 2rem; line-height: 1.15;
-    margin-bottom: 0.75rem; color: #1A1A1A;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.03em;
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+    color: #1A1A1A;
   }
 
   .hero-body p {
-    font-size: 0.92rem; color: #555;
-    line-height: 1.7; font-weight: 300;
+    font-size: 0.92rem;
+    color: #555;
+    line-height: 1.75;
+    font-weight: 400;
   }
 
   .byline {
-    font-size: 0.7rem; color: #999;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    margin-top: 1rem; padding-top: 1rem;
-    border-top: 1px solid #E0E0E0; font-weight: 500;
+    font-size: 0.7rem;
+    color: #999;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #E0E0E0;
+    font-weight: 500;
   }
 
+  /* News stack */
   .news-stack { display: flex; flex-direction: column; gap: 1rem; }
 
   .news-item {
-    background: white; border: 1px solid #E0E0E0;
+    background: white;
+    border: 1px solid #E0E0E0;
     border-left: 4px solid var(--red);
     padding: 1rem 1.25rem;
-    display: flex; gap: 1rem; align-items: flex-start;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
     transition: border-color 0.2s, box-shadow 0.2s;
     box-shadow: 0 1px 4px rgba(0,0,0,0.05);
   }
@@ -74,36 +78,48 @@
   .news-item:hover { border-left-color: var(--yellow); box-shadow: 0 3px 12px rgba(0,0,0,0.1); }
 
   .news-num {
-    font-family: 'Russo One', sans-serif;
-    font-size: 2rem; color: #E8E8E8;
-    line-height: 1; flex-shrink: 0; width: 2.5rem; text-align: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: #E0E0E0;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 2.5rem;
+    text-align: center;
   }
 
-  .news-item h3 { font-size: 0.95rem; line-height: 1.3; margin-bottom: 0.3rem; color: #1A1A1A; }
+  .news-item h3 { font-size: 0.95rem; font-weight: 600; line-height: 1.3; margin-bottom: 0.3rem; color: #1A1A1A; }
   .news-item p { font-size: 0.8rem; color: #777; line-height: 1.5; }
 
+  /* Sidebar */
   .sidebar-widget {
-    background: white; border: 1px solid #E0E0E0;
+    background: white;
+    border: 1px solid #E0E0E0;
     border-top: 4px solid var(--red);
-    padding: 1.25rem; margin-bottom: 1.5rem;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   }
 
   .artist-card {
-    display: flex; align-items: center; gap: 0.85rem;
-    padding: 0.65rem 0; border-bottom: 1px solid #F0F0F0;
-    text-decoration: none; color: inherit; transition: background 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid #F0F0F0;
+    text-decoration: none;
+    color: inherit;
   }
-
   .artist-card:last-child { border-bottom: none; }
-  .artist-card:hover { background: #FFF8F8; margin: 0 -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
+  .artist-card:hover .artist-name { color: var(--red); }
 
   .artist-avatar {
-    width: 44px; height: 44px; border-radius: 50%;
+    width: 44px; height: 44px;
+    border-radius: 50%;
     background: var(--red);
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Russo One', sans-serif;
-    font-size: 1rem; color: white; flex-shrink: 0;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem; color: white;
+    flex-shrink: 0;
     border: 2px solid var(--yellow);
   }
 
@@ -114,139 +130,74 @@
   .event-item:last-child { border-bottom: none; }
 
   .event-date {
-    display: inline-block; background: var(--red); color: white;
-    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em;
-    padding: 2px 8px; margin-bottom: 0.3rem; text-transform: uppercase;
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 2px 8px;
+    margin-bottom: 0.3rem;
+    text-transform: uppercase;
   }
 
   .event-title { font-size: 0.85rem; font-weight: 500; line-height: 1.3; }
   .event-loc { font-size: 0.72rem; color: #888; margin-top: 0.15rem; }
 
   .pull-quote {
-    font-size: 1rem; line-height: 1.5; margin-bottom: 0.5rem;
-    font-style: italic; color: #333;
-    border-left: 3px solid var(--yellow); padding-left: 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+    color: #333;
+    border-left: 3px solid var(--yellow);
+    padding-left: 0.75rem;
   }
 
   .pull-attr { font-size: 0.72rem; color: #888; font-weight: 500; }
 
-  /* ── TOP 10 SONGS ──────────────────────────────── */
-  .top10-section {
-    background: #111;
-    padding: 2rem 1.5rem;
-    margin-top: 3rem;
+  @media (max-width: 700px) {
+    .main-grid { grid-template-columns: 1fr; }
   }
 
-  .top10-header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 0.4rem;
-  }
-
-  .top10-header .section-label {
-    color: var(--yellow);
-    border-color: var(--yellow);
-    margin-bottom: 0;
-  }
-
-  .top10-week {
-    font-size: 0.68rem;
-    color: #555;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-weight: 500;
-    margin-bottom: 1.25rem;
-  }
-
+  /* Top 10 Chart */
   .top10-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    border: 1px solid #222;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 2rem;
   }
-
-  .song-row {
+  .chart-item {
+    background: white;
+    border: 1px solid #E0E0E0;
+    padding: 0.85rem 1rem;
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 0.9rem 1rem;
-    border-bottom: 1px solid #222;
-    border-right: 1px solid #222;
-    transition: background 0.15s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    transition: box-shadow 0.2s;
   }
-
-  .song-row:nth-child(even) { border-right: none; }
-  .song-row:nth-last-child(-n+2) { border-bottom: none; }
-  .song-row:hover { background: #1a1a1a; }
-
-  .song-rank {
-    font-family: 'Russo One', sans-serif;
-    font-size: 1.5rem;
-    color: #2a2a2a;
-    min-width: 2rem;
-    text-align: center;
-    line-height: 1;
-    flex-shrink: 0;
-  }
-
-  .song-row:nth-child(1) .song-rank,
-  .song-row:nth-child(2) .song-rank { color: var(--yellow); font-size: 1.7rem; }
-  .song-row:nth-child(3) .song-rank,
-  .song-row:nth-child(4) .song-rank { color: #888; }
-
-  .song-info { flex: 1; min-width: 0; }
-
-  .song-title {
-    font-size: 0.88rem;
-    font-weight: 600;
+  .chart-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  .chart-num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
     color: white;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-bottom: 0.1rem;
-  }
-
-  .song-artist {
-    font-size: 0.7rem;
-    color: #666;
-  }
-
-  .song-right {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
   }
-
-  .song-trend {
-    font-size: 1.1rem;
-    line-height: 1;
-  }
-
-  .song-weeks {
-    font-size: 0.58rem;
-    color: #444;
-    text-align: center;
-    letter-spacing: 0.03em;
-    white-space: nowrap;
-  }
-
-  @media (max-width: 700px) {
-    .main-grid { grid-template-columns: 1fr; }
-    .hero-img { height: 220px; }
-    .top10-grid { grid-template-columns: 1fr; }
-    .song-row { border-right: none; }
-    .song-row:nth-last-child(-n+2) { border-bottom: 1px solid #222; }
-    .song-row:last-child { border-bottom: none; }
-  }
+  .chart-title { font-size: 0.9rem; font-weight: 600; color: #1A1A1A; }
+  .chart-artist { font-size: 0.75rem; color: var(--red); font-weight: 500; margin-top: 0.1rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  .chart-badge { margin-left: auto; font-size: 0.65rem; font-weight: 700; background: var(--red); color: white; padding: 2px 8px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .chart-body { flex: 1; }
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="page-wrap">
   <div class="main-grid">
+
     <main>
       <div class="section-label">Featured Story</div>
 
@@ -254,9 +205,9 @@
       <div class="card hero-card">
         <div class="hero-img">
           {% if featured.image %}
-            <img class="article-photo" src="/static/{{ featured.image }}" alt="{{ featured.title }}">
+            <img src="/static/{{ featured.image }}" alt="{{ featured.title }}">
           {% else %}
-            <img class="fallback-logo" src="/static/sublogo.jpg" alt="Maskandi Online Magazine">
+            🎵
           {% endif %}
         </div>
         <div class="hero-body">
@@ -282,34 +233,6 @@
         </div>
         {% endfor %}
       </div>
-
-      <!-- TOP 10 WEEKLY SONGS -->
-      <div class="top10-section">
-        <div class="top10-header">
-          <div class="section-label">🎵 Top 10 Weekly Songs</div>
-        </div>
-        <div class="top10-week">Week of 26 May 2026 · Updated Every Monday</div>
-        <div class="top10-grid">
-          {% for song in top10 %}
-          <div class="song-row">
-            <div class="song-rank">{{ song.rank }}</div>
-            <div class="song-info">
-              <div class="song-title">{{ song.title }}</div>
-              <div class="song-artist">{{ song.artist }}</div>
-            </div>
-            <div class="song-right">
-              <div class="song-trend">
-                {% if song.trend == 'up' %}🔺
-                {% elif song.trend == 'down' %}🔻
-                {% else %}➖{% endif %}
-              </div>
-              <div class="song-weeks">{{ song.weeks }}w</div>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-
     </main>
 
     <aside>
@@ -337,13 +260,91 @@
         {% endfor %}
       </div>
 
+      <div class="section-label" style="margin-top:2rem">In Memoriam</div>
       <div class="sidebar-widget">
-        <div class="section-label">Quote of the Day</div>
-        <div class="pull-quote">"Music is the language of our ancestors — I just speak it louder."</div>
-        <div class="pull-attr">— Khuzani, May 2026</div>
-        <a href="/news" class="btn-read" style="margin-top:1rem">Read full interview →</a>
+        <div class="pull-quote">"Umculo wakho usaqhubeka ukuphila ezinhliziyweni zethu."</div>
+        <div class="pull-attr">— Lala ngoxolo, Mjik'jelwa 1983–2018</div>
       </div>
     </aside>
+
   </div>
+
+  <!-- TOP 10 TRENDING SONGS -->
+  <div class="section-label" style="margin-top:2rem">🎵 Fridays Trending Top 10 — YouTube</div>
+  <div style="font-size:0.72rem;color:#999;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:1rem;">Week of 26 May 2026 · Updated Every Friday · YouTube Platform</div>
+  <div class="top10-grid">
+    <div class="chart-item">
+      <div class="chart-num" style="background:var(--red)">1</div>
+      <div class="chart-body">
+        <div class="chart-title">Kushoda Obaba</div>
+        <div class="chart-artist">Menzi Music</div>
+      </div>
+      <div class="chart-badge new">🔥 Hot</div>
+    </div>
+    <div class="chart-item">
+      <div class="chart-num" style="background:#333">2</div>
+      <div class="chart-body">
+        <div class="chart-title">Izinkinga Zami</div>
+        <div class="chart-artist">Menzi Music</div>
+      </div>
+    </div>
+    <div class="chart-item">
+      <div class="chart-num" style="background:#333">3</div>
+      <div class="chart-body">
+        <div class="chart-title">Make Them Cry</div>
+        <div class="chart-artist">Drake</div>
+      </div>
+    </div>
+    <div class="chart-item">
+      <div class="chart-num" style="background:#333">4</div>
+      <div class="chart-body">
+        <div class="chart-title">Ezohlala Nawe</div>
+        <div class="chart-artist">Menzi Music</div>
+      </div>
+    </div>
+    <div class="chart-item">
+      <div class="chart-num" style="background:#333">5</div>
+      <div class="chart-body">
+        <div class="chart-title">Janice STFU</div>
+        <div class="chart-artist">Drake</div>
+      </div>
+    </div>
+    <div class="chart-item">
+      <div class="chart-num" style="background:#333">6</div>
+      <div class="chart-body">
+        <div class="chart-title">Whisper My Name</div>
+        <div class="chart-artist">Drake</div>
+      </div>
+    </div>
+    <div class="chart-item">
+      <div class="chart-num" style="background:#333">7</div>
+      <div class="chart-body">
+        <div class="chart-title">Jiki Jiki (Beke le Beke)</div>
+        <div class="chart-artist">DJ Sizer</div>
+      </div>
+    </div>
+    <div class="chart-item">
+      <div class="chart-num" style="background:#333">8</div>
+      <div class="chart-body">
+        <div class="chart-title">Sengithole Omunye</div>
+        <div class="chart-artist">Feza</div>
+      </div>
+    </div>
+    <div class="chart-item">
+      <div class="chart-num" style="background:#333">9</div>
+      <div class="chart-body">
+        <div class="chart-title">Skhethe</div>
+        <div class="chart-artist">Nova SA Style & BA Bethe Gashoazen</div>
+      </div>
+    </div>
+    <div class="chart-item">
+      <div class="chart-num" style="background:#333">10</div>
+      <div class="chart-body">
+        <div class="chart-title">Izospana</div>
+        <div class="chart-artist">Zuma, Sam Deep & Thatohatsi</div>
+      </div>
+    </div>
+  </div>
+
 </div>
 {% endblock %}
