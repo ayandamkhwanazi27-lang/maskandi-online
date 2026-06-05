@@ -59,7 +59,25 @@
       justify-content: center;
       padding: 1.5rem 2rem 1.2rem;
       text-align: center;
-      background: var(--red);
+      background-color: #CC0000;
+      background-image: 
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 2px,
+          rgba(0,0,0,0.08) 2px,
+          rgba(0,0,0,0.08) 4px
+        ),
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 2px,
+          rgba(255,255,255,0.03) 2px,
+          rgba(255,255,255,0.03) 4px
+        ),
+        radial-gradient(ellipse at 20% 50%, rgba(180,0,0,0.6) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 50%, rgba(180,0,0,0.6) 0%, transparent 60%),
+        linear-gradient(135deg, #AA0000 0%, #DD0000 40%, #CC0000 60%, #AA0000 100%);
     }
     .masthead-logo {
       width: 90px; height: 90px;
