@@ -132,6 +132,10 @@ def news():
 def artists_page():
     return render_template("artists.html", artists=artists)
 
+@app.route("/albums")
+def albums():
+    return render_template("albums.html")
+
 @app.route("/events")
 def events_page():
     return render_template("events.html", events=events)
