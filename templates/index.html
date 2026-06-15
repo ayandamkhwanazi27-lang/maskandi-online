@@ -27,7 +27,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top center;
+    object-position: center center;
     display: block;
   }
 
@@ -220,7 +220,7 @@
       <div class="section-label">Featured Story</div>
 
       {% if featured %}
-      <div class="card hero-card">
+      <a href="/article/{{ featured.id }}" class="card hero-card" style="text-decoration:none;color:inherit;display:block;">
         <div class="hero-img">
           {% if featured.image %}
             <img src="/static/{{ featured.image }}" alt="{{ featured.title }}">
@@ -233,22 +233,22 @@
           <h2>{{ featured.title }}</h2>
           <p>{{ featured.summary }}</p>
           <div class="byline">By {{ featured.author }} &nbsp;·&nbsp; {{ featured.date }} &nbsp;·&nbsp; {{ featured.read_time }}</div>
-          <a href="/news" class="btn-read">Continue reading →</a>
+          <span class="btn-read">Continue reading →</span>
         </div>
-      </div>
+      </a>
       {% endif %}
 
       <div class="section-label" style="margin-top:2rem">Latest News</div>
       <div class="news-stack">
         {% for i, article in enumerate(latest) %}
-        <div class="news-item">
+        <a href="/article/{{ article.id }}" class="news-item" style="text-decoration:none;color:inherit;">
           <div class="news-num">0{{ i + 1 }}</div>
           <div>
             <h3>{{ article.title }}</h3>
             <p>{{ article.summary }}</p>
-            <a href="/news" class="btn-read">Read more →</a>
+            <span class="btn-read">Read more →</span>
           </div>
-        </div>
+        </a>
         {% endfor %}
       </div>
     </main>
