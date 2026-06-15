@@ -23,6 +23,7 @@ news_articles = [
         "read_time": "4 min read",
         "featured": True,
         "image": "mzukulu1.jpeg",
+        "gallery": ["mzukulu1.jpeg", "mzukulu2.jpeg", "mzukulu3.jpeg", "mzukulu4.jpeg", "mzukulu5.jpeg"],
     },
     {
         "id": 1,
@@ -139,6 +140,13 @@ def home():
 @app.route("/news")
 def news():
     return render_template("news.html", articles=news_articles)
+
+@app.route("/article/<int:article_id>")
+def article_detail(article_id):
+    article = next((a for a in news_articles if a["id"] == article_id), None)
+    if article is None:
+        article = news_articles[0]
+    return render_template("article.html", article=article)
 
 @app.route("/artists")
 def artists_page():
