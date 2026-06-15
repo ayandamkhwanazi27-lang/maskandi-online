@@ -13,6 +13,18 @@ def static_files(filename):
 
 news_articles = [
     {
+        "id": 0,
+        "tag": "Live Review",
+        "title": "Mzukulu's Album Tour at Carnival City Declared a Major Success",
+        "summary": "South African Maskandi star Mzukulu delivered a powerful and memorable performance at Carnival City's Big Top Arena in Johannesburg, where his highly anticipated album tour proved to be a major success, celebrating his latest project Ng'funa Intozami.",
+        "full_story": "Held on 13 June 2026, the concert was staged at Carnival City, known for hosting large-scale live music and cultural events. The show opened its doors at 15:00, with the performance beginning later in the afternoon, creating a vibrant atmosphere filled with anticipation and excitement.\n\nFrom the moment Mzukulu stepped on stage, the energy in the arena reflected the strong connection he has built with his audience over the years. Fans responded enthusiastically as he performed a mix of his popular hits and newer material from the album, showcasing his signature blend of traditional Maskandi sound and modern stage production.\n\nThe Carnival City performance was designed as more than just a concert — it was presented as a theatrical musical experience, combining live instrumentation, cultural storytelling, and carefully crafted stage production. Organisers highlighted the event as a 'homecoming celebration' of Maskandi music.\n\nAudience reception was overwhelmingly positive, with many fans describing the event as one of Mzukulu's strongest live performances to date. As his album tour continues, expectations remain high for future performances.",
+        "author": "Maskandi Online Magazine",
+        "date": "13 June 2026",
+        "read_time": "4 min read",
+        "featured": True,
+        "image": "mzukulu1.jpeg",
+    },
+    {
         "id": 1,
         "tag": "Sikhumbula",
         "title": "Sekuphele 8 Years Adlula Emhlabeni USbongiseni Ngubane — Mjik'jelwa",
@@ -20,7 +32,7 @@ news_articles = [
         "author": "Maskandi Online Magazine",
         "date": "25 May 2026",
         "read_time": "3 min read",
-        "featured": True,
+        "featured": False,
         "image": "mjikjelwa.jpg",
     },
     {
