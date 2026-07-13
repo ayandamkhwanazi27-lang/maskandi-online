@@ -38,6 +38,8 @@ news_articles = [
         "image": "inkosi.jpg",
         "gallery": [],
     },
+    {
+        "id": 10,
         "tag": "Live Review",
         "title": "Mzukulu's Album Tour at Carnival City Declared a Major Success",
         "summary": "South African Maskandi star Mzukulu delivered a powerful and memorable performance at Carnival City's Big Top Arena in Johannesburg, where his highly anticipated album tour proved to be a major success, celebrating his latest project Ng'funa Intozami.",
