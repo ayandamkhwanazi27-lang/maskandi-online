@@ -108,12 +108,77 @@
     padding: 3px 10px;
     border: 1px solid #FFD0D0;
   }
+
+  /* Directory table */
+  .directory-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    font-size: 0.82rem;
+    margin-bottom: 2rem;
+  }
+  .directory-table thead tr {
+    background: #1A1A1A;
+    color: #FFD700;
+  }
+  .directory-table th {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .directory-table td {
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid #F0F0F0;
+    color: #333;
+  }
+  .directory-table tr:hover td { background: #FFF5F5; }
+  .directory-table tr:nth-child(even) td { background: #FAFAFA; }
+  .directory-table tr:nth-child(even):hover td { background: #FFF5F5; }
+
+  .pop-bar-wrap { width: 80px; background: #F0F0F0; height: 6px; border-radius: 3px; display: inline-block; vertical-align: middle; }
+  .pop-bar { height: 6px; border-radius: 3px; background: var(--red); }
+
+  .dir-link {
+    color: var(--red);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .dir-link:hover { color: #1A1A1A; }
+
+  /* Songs grid */
+  .songs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+  .song-card {
+    background: white;
+    border: 1px solid #E0E0E0;
+    border-left: 4px solid var(--red);
+    padding: 0.85rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+  .song-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-left-color: #1A1A1A; }
+  .song-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .song-name { font-size: 0.88rem; font-weight: 600; color: #1A1A1A; line-height: 1.2; }
+  .song-artist { font-size: 0.72rem; color: var(--red); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.15rem; }
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="page-wrap">
-  <div class="section-label">Maskandi Artists</div>
+
+  <!-- OUR FEATURED ARTISTS -->
+  <div class="section-label">Our Featured Artists</div>
   <div class="artists-grid">
     {% for artist in artists %}
     <div class="artist-card">
@@ -149,5 +214,142 @@
     </div>
     {% endfor %}
   </div>
+
+  <!-- MASKANDI ARTISTS DIRECTORY -->
+  <div class="section-label" style="margin-top:2rem">Maskandi Artists Directory — Top 50+</div>
+  <p style="font-size:0.78rem;color:#888;margin-bottom:1rem;">Popularity and follower data sourced from Spotify via Gemtracks. Click any artist to search on YouTube.</p>
+  <table class="directory-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Artist</th>
+        <th>Popularity</th>
+        <th>Spotify Followers</th>
+        <th>Listen</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% set dir_artists = [
+        ("Khuzani", 44, 136845),
+        ("Mthandeni SK", 44, 7112),
+        ("Mzukulu", 42, 95000),
+        ("Big Nuz", 39, 159599),
+        ("Ntencane", 40, 86152),
+        ("Professor", 39, 54470),
+        ("Mnqobi Yazo", 38, 152763),
+        ("Saliwa", 39, 15244),
+        ("Inkos'yamagcokama", 39, 75190),
+        ("Ugatsheni", 39, 51366),
+        ("uMkhulekelwa", 38, 12669),
+        ("Intaba Yase Dubai", 37, 126863),
+        ("Skweletu", 37, 37994),
+        ("Shwi No Mtekhala", 37, 49860),
+        ("Luve Dubazane", 37, 8626),
+        ("IZINGANE ZOMA", 36, 66826),
+        ("Duncan", 35, 62242),
+        ("Udumakahle", 35, 45000),
+        ("MusiholiQ", 32, 35450),
+        ("Limit", 34, 38061),
+        ("Ithwasa Lekhansela", 34, 22935),
+        ("Bhekumuzi Luthuli", 33, 36072),
+        ("Sminofu", 34, 14513),
+        ("Bahubhe", 33, 9476),
+        ("Anzo", 33, 8000),
+        ("JAIVA ZIMNIKE", 32, 7173),
+        ("Mfaz' Omnyama", 32, 28968),
+        ("Navigator Gcwensa", 31, 11805),
+        ("Imithente", 31, 57213),
+        ("Imfezi Emnyama", 31, 31350),
+        ("Falabo", 31, 26501),
+        ("uMjabulisi", 30, 28388),
+        ("Igcokama Elisha", 29, 64689),
+        ("Jaiva Zimnike", 29, 25517),
+        ("Indoni", 28, 6947),
+        ("UNJOKO", 28, 29419),
+        ("Ihhashi Elimhlophe", 26, 1053),
+        ("Amageza Amahle", 28, 5000),
+        ("Phuzekhemisi", 26, 28281),
+        ("Izingane Amakhosi", 27, 5989),
+        ("Stabhilithi", 29, 13363),
+        ("Udlubheke", 29, 25281),
+        ("Mashelela", 29, 8590),
+        ("Mshinwemali", 29, 966),
+        ("Madlala", 30, 944),
+        ("Shabalala Rhythm", 29, 9806),
+        ("Nue_Sam", 27, 10342),
+        ("Umgqumeni", 30, 20000),
+        ("Isitha sama ex", 28, 531),
+      ] %}
+      {% for i, (name, pop, followers) in enumerate(dir_artists) %}
+      <tr>
+        <td style="color:#aaa;font-weight:600;">{{ i + 1 }}</td>
+        <td><a class="dir-link" href="https://www.youtube.com/results?search_query={{ name|urlencode }}+maskandi" target="_blank">{{ name }}</a></td>
+        <td>
+          <span class="pop-bar-wrap"><span class="pop-bar" style="width:{{ pop }}%;"></span></span>
+          <span style="font-size:0.72rem;color:#888;margin-left:6px;">{{ pop }}</span>
+        </td>
+        <td style="color:#555;">{{ "{:,}".format(followers) }}</td>
+        <td>
+          <a href="https://open.spotify.com/search/{{ name|urlencode }}" target="_blank" style="color:#1DB954;font-size:0.7rem;font-weight:700;text-decoration:none;">Spotify</a>
+          &nbsp;
+          <a href="https://www.youtube.com/results?search_query={{ name|urlencode }}+maskandi" target="_blank" style="color:#FF0000;font-size:0.7rem;font-weight:700;text-decoration:none;">YouTube</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- LATEST MASKANDI SONGS -->
+  <div class="section-label" style="margin-top:2rem">Latest Maskandi Songs</div>
+  <p style="font-size:0.78rem;color:#888;margin-bottom:1rem;">Click any song to search on YouTube.</p>
+  <div class="songs-grid">
+    {% set latest_songs = [
+      ("Asifani siyafanelana", "Udumakahle"),
+      ("Inja Nodogo", "Khuzani"),
+      ("Sabathile", "Mzukulu"),
+      ("Isigqila Sothando", "Ntencane"),
+      ("Thembelihle", "UNJOKO"),
+      ("Bengikwethemba", "Bhekumuzi Luthuli"),
+      ("Ngavele Ngamnika", "Khuzani"),
+      ("Emendweni", "Ugatsheni"),
+      ("Dali Ungavumi", "Mshinwemali"),
+      ("Ijele", "Khuzani"),
+      ("BayangiSabawela", "Ntencane"),
+      ("SUKA SISHIMANE", "Saliwa"),
+      ("Sukuma Mkami Bakubone", "Mzukulu"),
+      ("Nabanye", "Intaba Yase Dubai"),
+      ("Ngicela Uku Confessor", "Ithwasa Lekhansela"),
+      ("Imbabala", "Igcokama Elisha"),
+      ("Owami Lomama", "Umgqumeni"),
+      ("Ngixolele", "Inkos'yamagcokama"),
+      ("My Yonkinto", "Stabhilithi"),
+      ("Izindaba Zomjolo", "Khuzani"),
+      ("Ikhaya lami", "Skweletu"),
+      ("Umendo", "Falabo"),
+      ("Wangenza", "UNJOKO"),
+      ("uThando Lwethu", "Ntencane"),
+      ("Myekeni Ahambe", "Limit"),
+      ("Nguye Lo", "Ntencane"),
+      ("Ispoki Esingafi", "Khuzani"),
+      ("Ivila Laselaweni", "Mzukulu"),
+      ("Ngehla Ngenyuka", "Udlubheke"),
+      ("Baphi", "Menzi"),
+      ("KOZE KULUNGE", "Ugatsheni"),
+      ("Nganixolela Kudala", "Ithwasa Lekhansela"),
+      ("Amageja", "Igcokama Elisha"),
+      ("Yithi Amabhinca", "Ugatsheni"),
+    ] %}
+    {% for song, artist in latest_songs %}
+    <a class="song-card" href="https://www.youtube.com/results?search_query={{ (song + ' ' + artist)|urlencode }}" target="_blank">
+      <div class="song-icon">🎵</div>
+      <div>
+        <div class="song-name">{{ song }}</div>
+        <div class="song-artist">{{ artist }}</div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
 </div>
 {% endblock %}
+
