@@ -61,20 +61,8 @@
       text-align: center;
       background-color: #CC0000;
       background-image: 
-        repeating-linear-gradient(
-          -45deg,
-          transparent,
-          transparent 2px,
-          rgba(0,0,0,0.08) 2px,
-          rgba(0,0,0,0.08) 4px
-        ),
-        repeating-linear-gradient(
-          45deg,
-          transparent,
-          transparent 2px,
-          rgba(255,255,255,0.03) 2px,
-          rgba(255,255,255,0.03) 4px
-        ),
+        repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px),
+        repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px),
         radial-gradient(ellipse at 20% 50%, rgba(180,0,0,0.6) 0%, transparent 60%),
         radial-gradient(ellipse at 80% 50%, rgba(180,0,0,0.6) 0%, transparent 60%),
         linear-gradient(135deg, #AA0000 0%, #DD0000 40%, #CC0000 60%, #AA0000 100%);
@@ -90,45 +78,53 @@
     }
     .masthead h1 {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 3.2rem;
-      letter-spacing: 0.05em;
+      font-size: 3.8rem;
+      letter-spacing: 0.06em;
       line-height: 1;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0;
     }
-    .masthead h1 .white-part {
-      color: white;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+    /* Each MASKANDI letter matching the logo */
+    .l-m { color: #FF2200; -webkit-text-stroke: 2px rgba(255,255,255,0.5); text-shadow: 3px 3px 0 rgba(0,0,0,0.3); }
+    .l-a1 { color: #00D4AA; -webkit-text-stroke: 2px rgba(255,255,255,0.4); text-shadow: 3px 3px 0 rgba(0,0,0,0.3); }
+    .l-s { color: #90EE00; -webkit-text-stroke: 2px rgba(255,255,255,0.4); text-shadow: 3px 3px 0 rgba(0,0,0,0.3); }
+    .l-k { color: #FF69B4; -webkit-text-stroke: 2px rgba(255,255,255,0.4); text-shadow: 3px 3px 0 rgba(0,0,0,0.3); }
+    .l-a2 { color: #FFA500; -webkit-text-stroke: 2px rgba(255,255,255,0.4); text-shadow: 3px 3px 0 rgba(0,0,0,0.3); }
+    .l-n { color: #4169E1; -webkit-text-stroke: 2px rgba(255,255,255,0.4); text-shadow: 3px 3px 0 rgba(0,0,0,0.3); }
+    .l-d { color: #9400D3; -webkit-text-stroke: 2px rgba(255,255,255,0.4); text-shadow: 3px 3px 0 rgba(0,0,0,0.3); }
+    .l-i { color: #FF2200; -webkit-text-stroke: 2px rgba(255,255,255,0.5); text-shadow: 3px 3px 0 rgba(0,0,0,0.3); }
+    /* online magazine italic */
+    .masthead-sub {
+      display: block;
+      font-family: 'Source Serif 4', serif;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: #FFB6C1;
+      letter-spacing: 0.05em;
+      margin: -0.2rem 0 0.1rem;
+      font-weight: 300;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
     }
-    .masthead h1 .gold-part {
-      color: #FFD700;
-      text-shadow: 2px 2px 0px #B8860B, 3px 3px 0px #8B6914;
+    /* NETWORK metallic silver */
+    .masthead-network {
+      display: block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      letter-spacing: 0.12em;
+      background: linear-gradient(180deg, #FFFFFF 0%, #C0C0C0 40%, #E8E8E8 60%, #A0A0A0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: none;
+      filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.4));
+      margin-top: -0.2rem;
     }
-    .masthead-divider {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 0.5rem;
-    }
-    .masthead-divider-line {
-      width: 60px;
-      height: 1px;
-      background: rgba(255,215,0,0.6);
-    }
-    .masthead-star { color: #FFD700; font-size: 0.8rem; }
     .masthead .tagline {
       color: rgba(255,255,255,0.85);
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       letter-spacing: 0.28em;
       text-transform: uppercase;
       font-weight: 500;
-    }
-    .masthead .tagline {
-      color: rgba(255,255,255,0.75);
-      font-size: 0.68rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      margin-top: 0.25rem;
-      font-weight: 500;
+      margin-top: 0.5rem;
     }
 
     nav.main-nav { display: flex; justify-content: center; gap: 0; background: var(--red-dark); }
@@ -281,13 +277,10 @@
     <img class="masthead-logo" src="/static/Logo.png" alt="Maskandi Network Logo">
     <div class="masthead-text">
       <h1>
-        <span class="white-part">MASKANDI</span><span class="gold-part">NETWORK</span>
+        <span class="l-m">M</span><span class="l-a1">A</span><span class="l-s">S</span><span class="l-k">K</span><span class="l-a2">A</span><span class="l-n">N</span><span class="l-d">D</span><span class="l-i">I</span>
+        <span class="masthead-sub">online magazine</span>
+        <span class="masthead-network">NETWORK</span>
       </h1>
-      <div class="masthead-divider">
-        <div class="masthead-divider-line"></div>
-        <span class="masthead-star">★</span>
-        <div class="masthead-divider-line"></div>
-      </div>
       <div class="tagline">Celebrating the Rhythm, Culture & Soul of Maskandi</div>
     </div>
   </div>
